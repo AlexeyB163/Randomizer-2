@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate {
-    func setNewValues(for randomNumber: RandomNumber)
+    func setNewValues(for minimumNumber: String, and maximumNumber: String)
 }
 
 class MainViewController: UIViewController {
@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet var getRandomNumberButton: UIButton!
     
-    private var randomNumber = RandomNumber(minimumValue: 0, maximumValue: 99)
+    private var randomNumber = RandomNumber(minimumValue: 1, maximumValue: 100)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
         guard let navigationVC = segue.destination as? UINavigationController else { return }
         guard let settingsVC = navigationVC.topViewController as? SettingsViewController else { return }
         settingsVC.randomNumber = randomNumber
-        settingsVC.delegate = self
+
     }
 
     @IBAction func getRandomNumberButtonTapped() {
@@ -42,9 +42,10 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: SettingsViewControllerDelegate {
-    func setNewValues(for randomNumber: RandomNumber) {
-        minimumValueLabel.text = String(randomNumber.minimumValue)
-        maximumValueLabel.text = String(randomNumber.maximumValue)
-        self.randomNumber = randomNumber
+    func setNewValues(for minimumNumber: String, and maximumNumber: String) {
+        minimumValueLabel.text = minimumNumber
+        maximumValueLabel.text = maximumNumber
     }
+    
+    
 }
