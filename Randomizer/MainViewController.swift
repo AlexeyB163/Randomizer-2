@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet var getRandomNumberButton: UIButton!
     
-    private var randomNumber = RandomNumber(minimumValue: 0, maximumValue: 100)
+    private var randomNumber = RandomNumber(minimumValue: 0, maximumValue: 99)
     
     override func viewDidLoad() {
         super.viewDidLoad()
